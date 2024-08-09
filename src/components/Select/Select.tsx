@@ -1,5 +1,5 @@
-import React from 'react'
-import {useState} from 'react'
+import React, {FC} from 'react'
+import {useState,useEffect} from 'react'
 
 interface ISelectProps {
 	arrayOptions: Array<string>
@@ -8,7 +8,7 @@ interface ISelectProps {
 	setOption: React.Dispatch<React.SetStateAction<string>>
 }
 
-const Select: React.FC<ISelectProps> = ({arrayOptions, title, option, setOption}) => {
+const Select: FC<ISelectProps> = ({arrayOptions, title, option, setOption}) => {
 	const onClick = (event: any, index: number) => {
 		setOption(arrayOptions[index])
 		console.log(event.target.textContent)
@@ -20,11 +20,13 @@ const Select: React.FC<ISelectProps> = ({arrayOptions, title, option, setOption}
 				{title}
 				{option}
 			</p>
-			{arrayOptions.map((option, index) => (
-				<button key={index} onClick={(event) => onClick(event, index)}>
-					{option}
-				</button>
-			))}
+			<div>
+				{arrayOptions.map((option, index) => (
+					<button key={index} onClick={(event) => onClick(event, index)}>
+						{option}
+					</button>
+				))}
+			</div>
 		</div>
 	)
 }
