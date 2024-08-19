@@ -8,10 +8,12 @@ export const fetchCards = () => async (dispatch: AppDispatch) => {
 		//?этот url скорее всего заменить, закинуть json с картинками на github и использовать уже его
 
 		dispatch(cardSlice.actions.cardsFetching())
+
 		const response = await axios.get<ICard[]>('http://localhost:3000/cards')
 		let cardsFromJSON: ICard[] = response.data.map((card) => {
 			return {...card, id: Number(card.id)}
 		})
+
 		dispatch(cardSlice.actions.cardsFetchingSuccess(cardsFromJSON))
 	} catch (e: any) {
 		dispatch(cardSlice.actions.cardsFetchingError(e.message))
