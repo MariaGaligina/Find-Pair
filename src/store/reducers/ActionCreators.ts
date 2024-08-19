@@ -9,7 +9,12 @@ export const fetchCards = () => async (dispatch: AppDispatch) => {
 
 		dispatch(cardSlice.actions.cardsFetching())
 		const response = await axios.get<ICard[]>('http://localhost:3000/cards')
-		dispatch(cardSlice.actions.cardsFetchingSuccess(response.data))
+		let cardsFromJSON: ICard[] = response.data.map((card) => {
+			return {...card, id: Number(card.id)}
+		})
+		console.log(response.data)
+		dispatch(cardSlice.actions.cardsFetchingSuccess(cardsFromJSON))
+		console.log(cardsFromJSON)
 	} catch (e: any) {
 		dispatch(cardSlice.actions.cardsFetchingError(e.message))
 	}
