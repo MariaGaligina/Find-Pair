@@ -9,15 +9,17 @@ import {useAppDispatch, useAppSelector} from './hooks/redux'
 import {cardSlice} from './store/reducers/CardSlice'
 import Cards from './components/Cards/Cards'
 import {fetchCards} from './store/reducers/ActionCreators'
+import Game from './components/Game/Game'
+
 //import ModeInput from './components/ModeInput/ModeInput.tsx'
 
 function App() {
-	const {cards} = useAppSelector((state) => state.cardReducer)
-	const {addCard, initializeCardsArray} = cardSlice.actions
+	const {cards, roundCards} = useAppSelector((state) => state.cardReducer)
+	const {addCard, initializeCardsArray, initRoundCards} = cardSlice.actions
 	const dispatch = useAppDispatch()
 
 	const [countOfPairs, setCountOfPairs] = useState<string>('4')
-	const [tymeType, setTymeType] = useState<string>('Секундомер')
+	const [timeType, setTimeType] = useState<string>('Секундомер')
 	const [modeIsOpen, setModeIsOpen] = useState<boolean>(true)
 	console.log('render App')
 
@@ -31,19 +33,38 @@ function App() {
 		{
 			arrayOptions: ['Без времени', 'Секундомер', 'Таймер'],
 			title: 'Учёт времени:',
-			option: tymeType,
-			setOption: setTymeType,
+			option: timeType,
+			setOption: setTimeType,
 		},
 	]
 	useEffect(() => {
-		dispatch(fetchCards())
+		const fetchAndInitCards = async () => {
+			await dispatch(fetchCards())
+			dispatch(initRoundCards())
+		}
+
+		fetchAndInitCards()
 	}, [])
-	console.log(cards)
 
 	return (
 		<>
-			<h2>Cards from json</h2>
-			<div>{JSON.stringify(cards)}</div>
+			<h2>Cards from GAME</h2>
+			<Game></Game>
+			<h2>Cards from round</h2>
+			<button
+				onClick={() => {
+					dispatch(cardSlice.actions.initRoundCards())
+				}}>
+				round
+			</button>
+			<button
+				onClick={() => {
+					dispatch(cardSlice.actions.deleteCardsFromRound())
+				}}>
+				delete round
+			</button>
+			<Cards cards={roundCards} onCardClick={() => console.log('clicked round card')}></Cards>
+
 			<button
 				onClick={() =>
 					dispatch(
@@ -57,12 +78,12 @@ function App() {
 				Add Card
 			</button>
 			<button onClick={() => dispatch(initializeCardsArray(cards))}>initial Cards</button>
-			{
+			{/*
 				<Modal isOpen={modeIsOpen} setIsOpen={setModeIsOpen}>
 					{<Mode gameOptionsArray={arrayForMode} />}
 				</Modal>
-			}
-			<Cards cards={cards} />
+			*/}
+			{/*<Cards cards={cards} />*/}
 
 			{/*
 			<Select
