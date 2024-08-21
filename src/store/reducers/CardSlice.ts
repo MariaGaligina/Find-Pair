@@ -1,8 +1,6 @@
 import {ICard} from './../../models/ICard'
 import {createSlice, PayloadAction} from '@reduxjs/toolkit'
 import createRoundCards from '../../functions/createRoundCards'
-import deleteRound from '../../functions/deleteRound'
-import {produce} from 'immer'
 
 interface CardState {
 	cards: ICard[]
@@ -38,6 +36,7 @@ export const cardSlice = createSlice({
 		},
 		initRoundCards(state) {
 			state.roundCards = createRoundCards(state.cards, 4)
+			console.log('init roundCards')
 		},
 		deleteCardsFromRound(state) {
 			state.roundCards = []

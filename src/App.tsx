@@ -12,12 +12,12 @@ import {fetchCards} from './store/reducers/ActionCreators'
 //import ModeInput from './components/ModeInput/ModeInput.tsx'
 
 function App() {
-	const {cards} = useAppSelector((state) => state.cardReducer)
-	const {addCard, initializeCardsArray} = cardSlice.actions
+	const {cards, roundCards} = useAppSelector((state) => state.cardReducer)
+	const {addCard, initializeCardsArray, initRoundCards} = cardSlice.actions
 	const dispatch = useAppDispatch()
 
 	const [countOfPairs, setCountOfPairs] = useState<string>('4')
-	const [tymeType, setTymeType] = useState<string>('Секундомер')
+	const [timeType, setTimeType] = useState<string>('Секундомер')
 	const [modeIsOpen, setModeIsOpen] = useState<boolean>(true)
 	console.log('render App')
 
@@ -31,12 +31,18 @@ function App() {
 		{
 			arrayOptions: ['Без времени', 'Секундомер', 'Таймер'],
 			title: 'Учёт времени:',
-			option: tymeType,
-			setOption: setTymeType,
+			option: timeType,
+			setOption: setTimeType,
 		},
 	]
 	useEffect(() => {
 		dispatch(fetchCards())
+		const fetchAndInitCards = async () => {
+			await dispatch(fetchCards())
+			dispatch(initRoundCards())
+		}
+
+		fetchAndInitCards()
 	}, [])
 	console.log(cards)
 
@@ -62,7 +68,7 @@ function App() {
 					{<Mode gameOptionsArray={arrayForMode} />}
 				</Modal>
 			}
-			<Cards cards={cards} />
+			<Cards cards={roundCards} onCardClick={() => console.log('clicked round card')}></Cards>
 
 			{/*
 			<Select

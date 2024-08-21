@@ -15,6 +15,7 @@ export const fetchCards = () => async (dispatch: AppDispatch) => {
 		})
 
 		dispatch(cardSlice.actions.cardsFetchingSuccess(cardsFromJSON))
+		console.log('получаем все карты cardsFetching()')
 	} catch (e: any) {
 		dispatch(cardSlice.actions.cardsFetchingError(e.message))
 	}

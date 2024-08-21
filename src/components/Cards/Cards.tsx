@@ -4,13 +4,21 @@ import Card from '../Card/Card'
 
 interface ICardsProps {
 	cards: ICard[]
+	onCardClick: (id: number, imgSrc: string) => void
 }
 
-const Cards: React.FC<ICardsProps> = ({cards}) => {
+const Cards: FC<ICardsProps> = ({cards, onCardClick}) => {
 	return (
 		<>
-			{cards.map((card, index) => (
-				<Card key={index} imgSrc={card.imgSrc} id={card.id} isSelected={card.isSelected} />
+			{cards.map((card) => (
+				<Card
+					key={card.id}
+					imgSrc={card.imgSrc}
+					id={card.id}
+					onClick={onCardClick}
+					isVisible={true}
+					isShaking={false}
+				/>
 			))}
 		</>
 	)
