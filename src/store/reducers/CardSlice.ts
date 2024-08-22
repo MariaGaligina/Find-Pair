@@ -36,13 +36,13 @@ export const cardSlice = createSlice({
 		},
 		initRoundCards(state) {
 			state.roundCards = createRoundCards(state.cards, 4)
-			console.log('init roundCards')
+			//console.log('init roundCards')
 		},
 		deleteCardsFromRound(state) {
 			state.roundCards = []
 		},
-		addCard(state, action: PayloadAction<ICard>) {
-			state.cards.push(action.payload)
+		deleteAllCards(state) {
+			state.cards = []
 		},
 		initializeCardsArray(state, action: PayloadAction<ICard[]>) {
 			state.cards = [...action.payload]
