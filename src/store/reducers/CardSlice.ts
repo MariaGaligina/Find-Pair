@@ -15,7 +15,7 @@ interface CardState {
 	isShaken: boolean[]
 }
 
-interface currentPairParams {
+export interface currentPairParams {
 	id: number
 	imgSrc: string
 }
