@@ -7,9 +7,24 @@ const createRoundCards = (cards: ICard[], countOfPairs: number): ICard[] => {
 	const allCardsCount: number = cards.length
 
 	roundCards = [
-		...roundCards.map((card) => ({...card})),
+		...roundCards.map((card) => ({
+			...card,
+			isClickable: true,
+			isFound: false,
+			isSelected: false,
+			isShaken: false,
+			isVisible: false,
+		})),
 		...roundCards.map((card) => {
-			return {...card, id: card.id + allCardsCount}
+			return {
+				...card,
+				id: card.id + allCardsCount,
+				isClickable: true,
+				isFound: false,
+				isSelected: false,
+				isShaken: false,
+				isVisible: false,
+			}
 		}),
 	]
 
