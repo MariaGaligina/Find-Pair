@@ -1,5 +1,10 @@
+$duration: 2s;
+
 .modal-out {
 	position: absolute;
+	top: 0;
+	left: 0;
+	//z-index: 10;
 	width: 100vw;
 	height: 100%;
 	display: flex;
@@ -11,7 +16,6 @@
 		background-color: rgb(169, 151, 116);
 		border-radius: 10px;
 		padding: 20px;
-		//border: 1px solid rgb(72, 67, 57);
 		border-radius: 10px;
 		width: fit-content;
 		height: fit-content;
@@ -19,30 +23,68 @@
 	}
 }
 
-.shadow-appearance {
-	animation-name: smooth-shadow-appearance;
-	animation-duration: 2s;
+@mixin animation-settings($name, $duration, $direction, $fill-mode) {
+	animation-name: $name;
+	animation-duration: $duration;
 	animation-timing-function: linear;
-	animation-fill-mode: forwards;
+	animation-direction: $direction;
+	animation-fill-mode: $fill-mode;
+}
+
+.shadow-appearance {
+	@include animation-settings(smooth-shadow-appearance, $duration, normal, forwards);
+}
+
+.shadow-fade {
+	@include animation-settings(smooth-shadow-fade, $duration, reverse, forwards);
 }
 
 @keyframes smooth-shadow-appearance {
-	from {
+	0% {
+		display: none;
 		opacity: 0;
 	}
-	to {
+	0.1% {
+		opacity: 0;
+		display: flex;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes smooth-shadow-fade {
+	0% {
+		display: none;
+		opacity: 0;
+	}
+	0.1% {
+		opacity: 0;
+		display: flex;
+	}
+	100% {
 		opacity: 1;
 	}
 }
 
 .content-block-appearance {
-	animation-name: drop-block;
-	animation-duration: 2s;
-	animation-timing-function: linear;
-	animation-fill-mode: forwards;
+	@include animation-settings(drop-block, $duration, normal, forwards);
+}
+
+.content-block-fade {
+	@include animation-settings(drop-block-fade, $duration, reverse, forwards);
 }
 
 @keyframes drop-block {
+	from {
+		transform: translate(-120%, -120%) rotate(0.5turn);
+	}
+	to {
+		transform: translateY(0%, 0%);
+	}
+}
+
+@keyframes drop-block-fade {
 	from {
 		transform: translate(-120%, -120%) rotate(0.5turn);
 	}
