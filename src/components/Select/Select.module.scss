@@ -1,0 +1,31 @@
+.title {
+	color: #4e4135;
+	font-size: 1.2rem;
+	white-space: nowrap;
+}
+
+.selected-option {
+	font-weight: bolder;
+}
+
+.options {
+	display: flex;
+	gap: 5px;
+	justify-content: center;
+}
+
+.option {
+	background-color: #ffffff;
+	color: #4e4135;
+	box-shadow: inset 0 0 6px #4e4135;
+	border: 1px solid #4e4135;
+	&:hover {
+		box-shadow: inset 0 0 12px #4e4135;
+	}
+	&:focus {
+		background-color: #4e4135;
+		color: #ffffff;
+		box-shadow: inset 0 0 10px #ffffff;
+		border: 1px solid #ffffff;
+	}
+}
