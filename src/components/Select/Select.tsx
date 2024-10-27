@@ -1,5 +1,5 @@
-import React, {FC} from 'react'
-import {useState,useEffect} from 'react'
+import {FC} from 'react'
+import styles from './Select.module.scss'
 
 interface ISelectProps {
 	arrayOptions: Array<string>
@@ -9,20 +9,16 @@ interface ISelectProps {
 }
 
 const Select: FC<ISelectProps> = ({arrayOptions, title, option, setOption}) => {
-	const onClick = (event: any, index: number) => {
+	const onClick = (index: number) => {
 		setOption(arrayOptions[index])
-		console.log(event.target.textContent)
-		console.log(index)
 	}
 	return (
-		<div>
-			<p>
-				{title}
-				{option}
-			</p>
-			<div>
+		<div className={styles.title}>
+			<span>{title}</span>
+			<span className={styles['selected-option']}>{option}</span>
+			<div className={styles.options}>
 				{arrayOptions.map((option, index) => (
-					<button key={index} onClick={(event) => onClick(event, index)}>
+					<button className={styles.option} key={index} onClick={() => onClick(index)}>
 						{option}
 					</button>
 				))}
