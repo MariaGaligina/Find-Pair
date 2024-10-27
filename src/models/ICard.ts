@@ -1,9 +1,8 @@
 export interface ICard {
 	id: number
 	imgSrc: string
+	isClickable: boolean
+	isFound: boolean
 	isSelected: boolean
-	position?: {
-		x: string
-		y: string
-	}
+	isShaken: boolean
 }
