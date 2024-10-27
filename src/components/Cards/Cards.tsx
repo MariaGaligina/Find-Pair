@@ -4,7 +4,7 @@ import Card from '../Card/Card'
 
 interface ICardsProps {
 	cards: ICard[]
-	onCardClick: (id: number, imgSrc: string) => void
+	onCardClick: (id: number, imgSrc: string, isClickable: boolean) => void
 }
 
 const Cards: FC<ICardsProps> = ({cards, onCardClick}) => {
@@ -15,9 +15,11 @@ const Cards: FC<ICardsProps> = ({cards, onCardClick}) => {
 					key={card.id}
 					imgSrc={card.imgSrc}
 					id={card.id}
+					isClickable={card.isClickable}
 					onClick={onCardClick}
-					isVisible={true}
-					isShaking={false}
+					isShaken={card.isShaken}
+					isFound={card.isFound}
+					isSelected={card.isSelected}
 				/>
 			))}
 		</>
