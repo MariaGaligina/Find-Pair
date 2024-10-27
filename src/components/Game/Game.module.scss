@@ -1,0 +1,50 @@
+$max-width: 250px;
+$gap: 2vh;
+$duration: 1s;
+
+.game {
+	justify-self: center;
+	max-width: 90vw;
+	height: 84vh;
+	display: grid;
+	grid-template-rows: repeat(2, calc(50% - $gap / 2));
+	gap: $gap;
+	cursor: default;
+	place-items: center;
+	opacity: 1;
+}
+
+@mixin animation-settings($name, $duration, $direction, $fill-mode) {
+	animation-name: $name;
+	animation-duration: $duration;
+	animation-timing-function: linear;
+	animation-direction: $direction;
+	animation-fill-mode: $fill-mode;
+}
+
+.appearance {
+	@include animation-settings(smooth-appearance, $duration, normal, forwards);
+}
+
+@keyframes smooth-appearance {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+.disappearance {
+	@include animation-settings(smooth-disappearance, $duration, reverse, forwards);
+	animation-delay: 1s;
+}
+
+@keyframes smooth-disappearance {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
