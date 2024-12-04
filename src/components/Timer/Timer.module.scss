@@ -1,0 +1,44 @@
+.timer {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 2%;
+}
+
+.title,
+.time {
+	color: #4e4135;
+	font-size: 2rem;
+	font-weight: bolder;
+	white-space: nowrap;
+}
+
+.clock {
+	padding: 8px 10px;
+	border-radius: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #ffffff;
+}
+
+.left-time {
+	border: 2px solid #9c8670;
+	box-shadow: inset 0 0 6px #9c8670;
+}
+
+.little-left-time {
+	border: 2px solid #ff0000;
+	box-shadow: inset 0 0 6px #ff0000;
+}
+
+.clockStart {
+	animation-name: start-clock-style;
+	animation-duration: 2s;
+	animation-fill-mode: forwards;
+}
+
+.start-clock-style {
+	border: 2px solid #9c8670;
+	box-shadow: inset 0 0 6px #9c8670;
+}
