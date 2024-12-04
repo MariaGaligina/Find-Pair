@@ -1,5 +1,5 @@
 import {ICard} from './../../models/ICard'
-import {createSlice, PayloadAction, createAsyncThunk} from '@reduxjs/toolkit'
+import {createSlice, PayloadAction} from '@reduxjs/toolkit'
 import createRoundCards from '../../functions/createRoundCards'
 import togglePropertyInCardsPair from '../../functions/togglePropertyInCardsPair'
 import togglePropertyInAllCards from '../../functions/togglePropertyInAllCards'

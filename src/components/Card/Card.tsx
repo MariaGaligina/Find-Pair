@@ -18,8 +18,6 @@ const Card: FC<CardProps> = ({id, imgSrc, onClick, isClickable, isFound, isSelec
 	const classesCard = cn([styles.card], {
 		[styles.not_clickable]: !isClickable,
 		[styles.not_clickable]: isFound,
-		//[styles.founded]: isFound,
-		//[styles.shaken]: isShaken,
 	})
 
 	const classesCardFront = cn([styles.card__front], {
@@ -32,7 +30,6 @@ const Card: FC<CardProps> = ({id, imgSrc, onClick, isClickable, isFound, isSelec
 			[styles.selected_back]: isSelected || isShaken || isFound,
 		},
 		{
-			//[styles.not_clickable]: isClickable,
 			[styles.founded]: isFound,
 			[styles.shaken]: isShaken,
 		}

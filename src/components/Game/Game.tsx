@@ -1,18 +1,13 @@
-import {FC, useState, useEffect, useRef} from 'react'
+import {FC, useRef} from 'react'
 import {useAppSelector, useAppDispatch} from '../../hooks/redux'
 import cn from 'classnames'
 import Cards from '../Cards/Cards'
-import {css} from '@emotion/css'
 import {cardSlice, currentPairParams} from '../../store/reducers/CardSlice'
 import checkPairAsync from '../../store/reducers/CheckPair'
 import styles from './Game.module.scss'
 
 interface IGameProps {
 	countOfPairsInGame: number
-}
-interface ICardRef {
-	id: number
-	imgSrc: string
 }
 
 const Game: FC<IGameProps> = ({countOfPairsInGame}) => {

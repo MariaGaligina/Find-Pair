@@ -4,7 +4,7 @@ import {useAppDispatch, useAppSelector} from './hooks/redux'
 import {cardSlice} from './store/reducers/CardSlice'
 import {fetchCards} from './store/reducers/ActionCreators'
 import Game from './components/Game/Game'
-import {Select, ISelectProps} from './components/Select/Select'
+import {ISelectProps} from './components/Select/Select'
 import Mode from './components/Mode/Mode'
 import Modal from './components/Modal/Modal'
 import Timer from './components/Timer/Timer'
@@ -116,41 +116,26 @@ function App() {
 	}, [modeSettingsIsOpen])
 
 	useEffect(() => {
-		if (isRoundNow) {
-			console.log('isRoundNow true', isRoundNow)
-		} else {
-			console.log('isRoundNow false', isRoundNow)
-		}
-	}, [isRoundNow])
-
-	useEffect(() => {
 		if (
 			countOfFoundPairs !== 0 &&
 			countOfPairsInRound !== 0 &&
 			countOfFoundPairs === countOfPairsInRound
 		) {
-			console.log('Все пары найдены!!!')
 			if (timeType === 'Секундомер') {
 				setIsStopwatchRunning(false)
 			} else if (timeType === 'Таймер') {
 				setIsTimerRunning(false)
 			}
-			console.log('finishRound() countOfFoundPairs')
 
 			finishRound()
 		}
 	}, [countOfFoundPairs])
 
 	useEffect(() => {
-		console.log('effect по таймеру timeType', timeType)
-		console.log(countOfPairsInRound, countOfFoundPairs, timeIsUp)
-
 		if (countOfPairsInRound !== 0 && timeIsUp === true) {
 			if (timeType === 'Секундомер') {
 				setIsStopwatchRunning(false)
 			} else if (timeType === 'Таймер') {
-				console.log('finishRound() timeIsUp timer')
-				console.log('таймер закончился')
 				finishRound()
 				setIsTimerRunning(false)
 			}
@@ -180,12 +165,6 @@ function App() {
 			) : (
 				''
 			)}
-
-			{/*!modeSettingsIsVisible || !modeResultIsVisible ? (
-				<h1>{`Раунд ${roundNumber.current}`}</h1>
-			) : (
-				``
-			)*/}
 			<Game countOfPairsInGame={countOfPairsInRound}></Game>
 			{modeSettingsIsVisible ? (
 				<Modal isOpen={modeSettingsIsOpen} setIsOpen={setModeSettingsIsOpen} result=''>
